@@ -104,27 +104,25 @@
 
 
 
-  <meta name="description" content="Dubbo源码学习 SPI机制Dubbo的SPI机制是通过自定义注解的方式实现的，在服务启动之初，Dubbo会加载存放在META-INF/service、META-INF/dubbo、META-INF/dubbo/internal下的配置文件信息，配置文件名以对应的顶级接口类的全路径命名，内容以键值对的方式存放支持的类型； 以Protocol为例，在META-INF/dubbo/internal下">
+  <meta name="description" content="SPI机制Dubbo的SPI机制是通过自定义注解的方式实现的，在服务启动之初，Dubbo会加载存放在META-INF/service、META-INF/dubbo、META-INF/dubbo/internal下的配置文件信息，配置文件名以对应的顶级接口类的全路径命名，内容以键值对的方式存放支持的类型； 以Protocol为例，在META-INF/dubbo/internal下有一个com.ali">
 <meta name="keywords" content="源码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="dubbo源码学习">
-<meta property="og:url" content="http://yoursite.com/2018/12/16/dubbo/index.html">
+<meta property="og:title" content="dubbo源码专题(一)">
+<meta property="og:url" content="http://yoursite.com/2018/12/16/dubbo/dubbo1/index.html">
 <meta property="og:site_name" content="加载中...">
-<meta property="og:description" content="Dubbo源码学习 SPI机制Dubbo的SPI机制是通过自定义注解的方式实现的，在服务启动之初，Dubbo会加载存放在META-INF/service、META-INF/dubbo、META-INF/dubbo/internal下的配置文件信息，配置文件名以对应的顶级接口类的全路径命名，内容以键值对的方式存放支持的类型； 以Protocol为例，在META-INF/dubbo/internal下">
+<meta property="og:description" content="SPI机制Dubbo的SPI机制是通过自定义注解的方式实现的，在服务启动之初，Dubbo会加载存放在META-INF/service、META-INF/dubbo、META-INF/dubbo/internal下的配置文件信息，配置文件名以对应的顶级接口类的全路径命名，内容以键值对的方式存放支持的类型； 以Protocol为例，在META-INF/dubbo/internal下有一个com.ali">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fy8z3688p4j31hc0u07a3.jpg">
-<meta property="og:updated_time" content="2018-12-16T15:14:44.441Z">
+<meta property="og:updated_time" content="2018-12-28T08:17:06.806Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dubbo源码学习">
-<meta name="twitter:description" content="Dubbo源码学习 SPI机制Dubbo的SPI机制是通过自定义注解的方式实现的，在服务启动之初，Dubbo会加载存放在META-INF/service、META-INF/dubbo、META-INF/dubbo/internal下的配置文件信息，配置文件名以对应的顶级接口类的全路径命名，内容以键值对的方式存放支持的类型； 以Protocol为例，在META-INF/dubbo/internal下">
-<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/006tNbRwgy1fy8z3688p4j31hc0u07a3.jpg">
+<meta name="twitter:title" content="dubbo源码专题(一)">
+<meta name="twitter:description" content="SPI机制Dubbo的SPI机制是通过自定义注解的方式实现的，在服务启动之初，Dubbo会加载存放在META-INF/service、META-INF/dubbo、META-INF/dubbo/internal下的配置文件信息，配置文件名以对应的顶级接口类的全路径命名，内容以键值对的方式存放支持的类型； 以Protocol为例，在META-INF/dubbo/internal下有一个com.ali">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/16/dubbo/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/16/dubbo/dubbo1/">
 
 
 
@@ -134,7 +132,7 @@
   };
 </script>
 
-  <title>dubbo源码学习 | 加载中...</title>
+  <title>dubbo源码专题(一) | 加载中...</title>
   
 
 
@@ -336,11 +334,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/16/dubbo/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/16/dubbo/dubbo1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="鍾欽鎮">
-      <meta itemprop="description" content="生而为作，作而为活">
+      <meta itemprop="description" content="他强由它强 清风拂山岗 他横由他横 明月照大江">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -353,7 +351,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">dubbo源码学习
+          <h1 class="post-title" itemprop="name headline">dubbo源码专题(一)
 
               
             
@@ -379,12 +377,24 @@
                 
               
 
-              <time title="创建时间：2018-12-16 22:45:31 / 修改时间：23:14:44" itemprop="dateCreated datePublished" datetime="2018-12-16T22:45:31+08:00">2018-12-16</time>
+              <time title="创建时间：2018-12-16 22:45:31" itemprop="dateCreated datePublished" datetime="2018-12-16T22:45:31+08:00">2018-12-16</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-28 16:17:06" itemprop="dateModified" datetime="2018-12-28T16:17:06+08:00">2018-12-28</time>
               
             
           </span>
@@ -435,8 +445,7 @@
       
 
       
-        <h1 id="Dubbo源码学习"><a href="#Dubbo源码学习" class="headerlink" title="Dubbo源码学习"></a>Dubbo源码学习</h1><p><img src="https://ws2.sinaimg.cn/large/006tNbRwgy1fy8z3688p4j31hc0u07a3.jpg" alt="01"></p>
-<h2 id="SPI机制"><a href="#SPI机制" class="headerlink" title="SPI机制"></a>SPI机制</h2><p>Dubbo的SPI机制是通过自定义注解的方式实现的，在服务启动之初，Dubbo会加载存放在<code>META-INF/service</code>、<code>META-INF/dubbo</code>、<code>META-INF/dubbo/internal</code>下的配置文件信息，配置文件名以对应的顶级接口类的全路径命名，内容以键值对的方式存放支持的类型；</p>
+        <h2 id="SPI机制"><a href="#SPI机制" class="headerlink" title="SPI机制"></a>SPI机制</h2><p>Dubbo的SPI机制是通过自定义注解的方式实现的，在服务启动之初，Dubbo会加载存放在<code>META-INF/service</code>、<code>META-INF/dubbo</code>、<code>META-INF/dubbo/internal</code>下的配置文件信息，配置文件名以对应的顶级接口类的全路径命名，内容以键值对的方式存放支持的类型；</p>
 <p>以<code>Protocol</code>为例，在<code>META-INF/dubbo/internal</code>下有一个<code>com.alibaba.dubbo.rpc.Protocol</code>文件，内容为</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">filter=com.alibaba.dubbo.rpc.protocol.ProtocolFilterWrapper</span><br><span class="line">listener=com.alibaba.dubbo.rpc.protocol.ProtocolListenerWrapper</span><br><span class="line">mock=com.alibaba.dubbo.rpc.support.MockProtocol</span><br><span class="line">dubbo=com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol</span><br><span class="line">injvm=com.alibaba.dubbo.rpc.protocol.injvm.InjvmProtocol</span><br><span class="line">rmi=com.alibaba.dubbo.rpc.protocol.rmi.RmiProtocol</span><br><span class="line">hessian=com.alibaba.dubbo.rpc.protocol.hessian.HessianProtocol</span><br><span class="line">com.alibaba.dubbo.rpc.protocol.http.HttpProtocol</span><br><span class="line">com.alibaba.dubbo.rpc.protocol.webservice.WebServiceProtocol</span><br><span class="line">thrift=com.alibaba.dubbo.rpc.protocol.thrift.ThriftProtocol</span><br><span class="line">memcached=com.alibaba.dubbo.rpc.protocol.memcached.MemcachedProtocol</span><br><span class="line">redis=com.alibaba.dubbo.rpc.protocol.redis.RedisProtocol</span><br><span class="line">rest=com.alibaba.dubbo.rpc.protocol.rest.RestProtocol</span><br><span class="line">registry=com.alibaba.dubbo.registry.integration.RegistryProtocol</span><br><span class="line">qos=com.alibaba.dubbo.qos.protocol.QosProtocolWrapper</span><br></pre></td></tr></table></figure>
 <p>在Dubbo中，通过<code>@SPI</code>和<code>@Adaptive</code>来实现SPI机制。</p>
@@ -669,8 +678,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/16/java/" rel="next" title="java">
-                <i class="fa fa-chevron-left"></i> java
+              <a href="/2018/12/16/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -739,7 +748,7 @@
               <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="鍾欽鎮">
             
               <p class="site-author-name" itemprop="name">鍾欽鎮</p>
-              <p class="site-description motion-element" itemprop="description">生而为作，作而为活</p>
+              <p class="site-description motion-element" itemprop="description">他强由它强 清风拂山岗 他横由他横 明月照大江</p>
           </div>
 
           
@@ -749,7 +758,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -814,7 +823,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Dubbo源码学习"><span class="nav-number">1.</span> <span class="nav-text">Dubbo源码学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SPI机制"><span class="nav-number">1.1.</span> <span class="nav-text">SPI机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#织入逻辑（wrapper）"><span class="nav-number">1.1.1.</span> <span class="nav-text">织入逻辑（wrapper）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注入逻辑（inject）"><span class="nav-number">1.1.2.</span> <span class="nav-text">注入逻辑（inject）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义扩展点"><span class="nav-number">1.1.3.</span> <span class="nav-text">自定义扩展点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件加载"><span class="nav-number">1.2.</span> <span class="nav-text">配置文件加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务发布"><span class="nav-number">1.3.</span> <span class="nav-text">服务发布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol-Adaptive"><span class="nav-number">1.3.1.</span> <span class="nav-text">Protocol@Adaptive</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RegistryProtocol"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">RegistryProtocol</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DubboProtocol"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">DubboProtocol</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RegistryFactory-Adaptive"><span class="nav-number">1.3.2.</span> <span class="nav-text">RegistryFactory@Adaptive</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ZookeeperRegistry"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">ZookeeperRegistry</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务订阅"><span class="nav-number">1.4.</span> <span class="nav-text">服务订阅</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#封装Invoker"><span class="nav-number">1.4.1.</span> <span class="nav-text">封装Invoker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RegistryDirectory"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">RegistryDirectory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DubboProtocol建立连接"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">DubboProtocol建立连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建服务代理对象"><span class="nav-number">1.4.2.</span> <span class="nav-text">创建服务代理对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务调用"><span class="nav-number">1.5.</span> <span class="nav-text">服务调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MockClusterInvoker"><span class="nav-number">1.5.1.</span> <span class="nav-text">MockClusterInvoker</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务响应"><span class="nav-number">1.6.</span> <span class="nav-text">服务响应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心跳机制"><span class="nav-number">1.7.</span> <span class="nav-text">心跳机制</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SPI机制"><span class="nav-number">1.</span> <span class="nav-text">SPI机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#织入逻辑（wrapper）"><span class="nav-number">1.1.</span> <span class="nav-text">织入逻辑（wrapper）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注入逻辑（inject）"><span class="nav-number">1.2.</span> <span class="nav-text">注入逻辑（inject）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义扩展点"><span class="nav-number">1.3.</span> <span class="nav-text">自定义扩展点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件加载"><span class="nav-number">2.</span> <span class="nav-text">配置文件加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务发布"><span class="nav-number">3.</span> <span class="nav-text">服务发布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Protocol-Adaptive"><span class="nav-number">3.1.</span> <span class="nav-text">Protocol@Adaptive</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RegistryProtocol"><span class="nav-number">3.1.1.</span> <span class="nav-text">RegistryProtocol</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DubboProtocol"><span class="nav-number">3.1.2.</span> <span class="nav-text">DubboProtocol</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RegistryFactory-Adaptive"><span class="nav-number">3.2.</span> <span class="nav-text">RegistryFactory@Adaptive</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ZookeeperRegistry"><span class="nav-number">3.2.1.</span> <span class="nav-text">ZookeeperRegistry</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务订阅"><span class="nav-number">4.</span> <span class="nav-text">服务订阅</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#封装Invoker"><span class="nav-number">4.1.</span> <span class="nav-text">封装Invoker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RegistryDirectory"><span class="nav-number">4.1.1.</span> <span class="nav-text">RegistryDirectory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DubboProtocol建立连接"><span class="nav-number">4.1.2.</span> <span class="nav-text">DubboProtocol建立连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建服务代理对象"><span class="nav-number">4.2.</span> <span class="nav-text">创建服务代理对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务调用"><span class="nav-number">5.</span> <span class="nav-text">服务调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MockClusterInvoker"><span class="nav-number">5.1.</span> <span class="nav-text">MockClusterInvoker</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务响应"><span class="nav-number">6.</span> <span class="nav-text">服务响应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心跳机制"><span class="nav-number">7.</span> <span class="nav-text">心跳机制</span></a></li></ol></div>
             
 
           </div>
@@ -835,7 +844,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
